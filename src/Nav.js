@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import DogDetails from "./DogDetails";
 
 function Nav() {
   return (
