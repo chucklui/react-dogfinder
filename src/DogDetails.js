@@ -1,13 +1,9 @@
 // import { useParams } from "react-router-dom";
 
-async function DogDetails() {
+function DogDetails() {
   // const params = useParams(); 
   // const dogName = params.name;
 
-  return (
-    <div className="DogDetails">
-      hi
-    </div>
-  );
+  return;
 }
 export default DogDetails;

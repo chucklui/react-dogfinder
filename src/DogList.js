@@ -2,10 +2,7 @@
 // import { useParams } from "react-router-dom";
 
 function DogList() {
-  return (
-    <div className="DogDetails">
-      hi
-    </div>)
+  return "hello";
 }
 
 export default DogList;

@@ -1,27 +1,27 @@
 import "./App.css";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 import DogList from "./DogList";
 import DogDetails from "./DogDetails";
 import Nav from "./Nav";
-const BASE_URL = 'localhost:5001/dogs';
 
+function App() {
+  const BASE_URL = "http://localhost:5001/dogs";
 
-// async function GetDogs(){
-
-// }
-
-// GetDogs();
-
-async function App() {
-
+  console.log("response");
   const [dogs, setDogs] = useState([]);
-  try{
+  const [hasFetchedDogs, setHasFetchedDogs] = useState(false);
+
+  async function getDogs() {
     const resp = await axios.get(BASE_URL);
+    console.log("resp", resp.data);
+    setHasFetchedDogs(true);
     setDogs(resp.data.dogs);
-  }catch(err){
-    console.log('err', err);
+  }
+
+  if (!hasFetchedDogs) {
+    getDogs();
   }
 
   return (
