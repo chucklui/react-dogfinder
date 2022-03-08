@@ -9,13 +9,12 @@ import Nav from "./Nav";
 function App() {
   const BASE_URL = "http://localhost:5001/dogs";
 
-  console.log("response");
   const [dogs, setDogs] = useState([]);
   const [hasFetchedDogs, setHasFetchedDogs] = useState(false);
 
   async function getDogs() {
     const resp = await axios.get(BASE_URL);
-    console.log("resp", resp.data);
+    console.log('data', resp.data);
     setHasFetchedDogs(true);
     setDogs(resp.data.dogs);
   }
@@ -27,14 +26,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Nav />
+        <Nav dogs={dogs}/>
 
         <Switch>
           <Route exact path="/dogs">
-            <DogList />
+            <DogList dogs={dogs}/>
           </Route>
           <Route exact path="/dogs/:name">
-            <DogDetails />
+            <DogDetails dogs={dogs}/>
           </Route>
           <Redirect to="/dogs" />
         </Switch>

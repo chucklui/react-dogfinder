@@ -1,20 +1,16 @@
 import { NavLink } from "react-router-dom";
 
-function Nav() {
+//array of {}
+function Nav({ dogs }) {
+  console.log('SSSS', dogs);
   return (
     <nav className="NavBar">
       <NavLink exact to="/dogs">
         Home
       </NavLink>
-      <NavLink exact to="/dogs/whiskey">
-        Whiskey
-      </NavLink>
-      <NavLink exact to="/dogs/duke">
-        Duke
-      </NavLink>
-      <NavLink exact to="/dogs/perry">
-        Perry
-      </NavLink>
+      {dogs.map((d,i) => {
+        return <NavLink exact to={`/dogs/${d.name}`} key={i}/>
+      })}
     </nav>
   );
 }
