@@ -15,10 +15,10 @@ function Nav({ dogs }) {
   return (
     <nav className="NavBar">
       <NavLink exact to="/dogs">
-        Home
+        <h1>Home</h1>
       </NavLink>
       {dogs.map((d,i) => {
-        return (<NavLink exact to={`/dogs/${d.name}`} key={i}> {d.name} </NavLink>)
+        return (<NavLink exact to={`/dogs/${d.name}`} key={i}> <h1>{d.name}</h1> </NavLink>)
       })}
     </nav>
   );

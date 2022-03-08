@@ -1,11 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import DogList from "./DogList";
-import DogDetails from "./DogDetails";
+import FilterDogs from "./FilterDogs";
 import Nav from "./Nav";
 const BASE_URL = "http://localhost:5001/dogs";
+
 /**
  * App
  * 
@@ -26,7 +27,6 @@ const BASE_URL = "http://localhost:5001/dogs";
  * 
  * App -> Nav/DogList/DogDetails
  */
-
 function App() {
   const [dogs, setDogs] = useState(null);
 
@@ -43,18 +43,18 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         <Nav dogs={dogs} />
         <Switch>
           <Route exact path="/dogs">
             <DogList dogs={dogs} />
           </Route>
           <Route exact path="/dogs/:name">
-            <DogDetails dogs={dogs} />
+            <FilterDogs dogs={dogs}/>
           </Route>
           <Redirect to="/dogs" />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
