@@ -28,18 +28,15 @@ const BASE_URL = "http://localhost:5001/dogs";
  */
 
 function App() {
-  
-
-  const [dogs, setDogs] = useState([]);
+  const [dogs, setDogs] = useState(null);
 
   async function getDogs() {
     const resp = await axios.get(BASE_URL);
-
     let dogInformation = resp.data;
     setDogs(dogInformation);
   }
 
-  if (dogs.length === 0) {
+  if (!dogs) {
     getDogs();
     return <p>Loading...</p>;
   }

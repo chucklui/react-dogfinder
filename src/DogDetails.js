@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 
 /**
  * Display details of a dog
@@ -10,24 +10,26 @@ import { useParams } from "react-router-dom";
  * App -> DogDetails
  */
 function DogDetails({ dogs }) {
+
   const params = useParams();
   const dogName = params.name;
 
-  const dogInfo = dogs.filter((d) => {
+  const dogInfo = dogs.find(function (d) {
     return d.name === dogName;
   });
-// REVIEW dogs.find, redirect if not found
+  if (!dogInfo) return <Redirect to="/dogs" />
+
   return (
     <div className="DogDetails">
-      <h1 className="DogDetails-name">{dogInfo[0].name}</h1>
+      <h1 className="DogDetails-name">{dogInfo.name}</h1>
       <img
         className="DogDetails-img"
-        src={`/${dogInfo[0].src}.jpg`}
+        src={`/${dogInfo.src}.jpg`}
         alt="dog pic"
       ></img>
-      <p className="DogDetails-age">{dogInfo[0].age}</p>
-      {dogInfo[0].facts.map((f) => {
-        return <p className="DogDetails-fact">{f}</p>;
+      <p className="DogDetails-age">{dogInfo.age}</p>
+      {dogInfo.facts.map((f, i) => {
+        return <p key={i} className="DogDetails-fact">{f}</p>;
       })}
     </div>
   );

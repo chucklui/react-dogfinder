@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /**DogList displays all dog info for all dogs
  *
  * Props: list of dog data as array of objects
@@ -14,14 +16,14 @@ function DogList({ dogs }) {
         return (
           <div key={i} className="DogList-info">
             <h1 className="DogList-name">{d.name}</h1>
-            <img
+            <Link to={`/dogs/${d.name}`}><img
               className="DogList-img"
               src={`/${d.src}.jpg`}
               alt="dog pic"
-            ></img>
+            ></img></Link>
             <p className="DogList-age">{d.age}</p>
-            {d.facts.map((f) => {
-              return <p className="DogList-fact">{f}</p>;
+            {d.facts.map((f, i) => {
+              return <p key={i} className="DogList-fact">{f}</p>;
             })}
           </div>
         );
