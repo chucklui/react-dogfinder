@@ -10,24 +10,26 @@ function App() {
   const BASE_URL = "http://localhost:5001/dogs";
 
   const [dogs, setDogs] = useState([]);
-  const [hasFetchedDogs, setHasFetchedDogs] = useState(false);
-
+  // const [hasFetchedDogs, setHasFetchedDogs] = useState(false);
+  console.log("dogs in app", dogs.length);
   async function getDogs() {
     const resp = await axios.get(BASE_URL);
     console.log('data', resp.data);
-    setHasFetchedDogs(true);
-    setDogs(resp.data.dogs);
+    let dogInformation = resp.data;
+    setDogs(dogInformation);
+    // setHasFetchedDogs(true);
+    
   }
 
-  if (!hasFetchedDogs) {
+  if (dogs.length === 0) {
     getDogs();
+    return <p>Loading...</p>;
   }
-
+  
   return (
     <div className="App">
       <BrowserRouter>
         <Nav dogs={dogs}/>
-
         <Switch>
           <Route exact path="/dogs">
             <DogList dogs={dogs}/>
